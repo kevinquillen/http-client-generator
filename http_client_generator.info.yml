@@ -1,0 +1,4 @@
+name: HTTP Client Generator
+type: module
+description: Adds Drush command(s) to scaffold out HTTP clients for interacting with remote APIs.
+core_version_requirement: ^9 || ^10

@@ -1,0 +1,7 @@
+{{ machine_name }}.settings:
+  path: '/admin/config/services/{{ menu_path }}/settings'
+  defaults:
+    _title: '{{ name  }} API Settings'
+    _form: 'Drupal\{{ machine_name }}\Form\{{ class }}SettingsForm'
+  requirements:
+    _permission: 'administer site configuration'

@@ -1,0 +1,61 @@
+<?php
+
+namespace Drupal\{{ machine_name }}\Http;
+
+use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Http\ClientFactory;
+use GuzzleHttp\Client;
+
+/**
+ * A simple interface for interacting with the remote HTTP API.
+ *
+ * @package {{ package }}
+ */
+class {{ class }} {
+
+  /**
+   * The HTTP client.
+   *
+   * @var \GuzzleHttp\Client
+   */
+  protected $client;
+
+  /**
+   * Constructs a new HTTP client.
+   *
+   * @param \Drupal\Core\Http\ClientFactory $factory
+   *   The HTTP client factory service.
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+   *   The configuration factory service.
+   */
+  public function __construct(ClientFactory $factory, ConfigFactoryInterface $config_factory) {
+    $config = $config_factory->get('{{ machine_name }}.settings');
+
+    $this->client = $factory->fromOptions([
+      'headers' => [
+        'Content-Type' => 'application/json',
+        'API-Key' => $config->get('api_key'),
+      ],
+      'base_uri' => $config->get('hostname'),
+    ]);
+  }
+
+  /**
+   * Submits a query to the API service.
+   */
+  public function query(array $options) {
+    $payload = [];
+
+    if (!empty($filters)) {
+      $payload['filter'] = $filters;
+    }
+
+    return $this->client->post(
+      '/query',
+      [
+        'json' => $payload,
+      ]
+    );
+  }
+
+}

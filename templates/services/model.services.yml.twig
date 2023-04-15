@@ -1,0 +1,4 @@
+services:
+  {{machine_name }}.api_client:
+    class: Drupal\{{machine_name }}\Http\{{ class }}
+    arguments: ['@http_client_factory', '@config.factory']
