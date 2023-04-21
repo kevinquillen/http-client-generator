@@ -1,6 +1,7 @@
 {
     "name": "kevinquillen/drush-http-client-generator",
     "description": "Adds Drush command(s) to scaffold out HTTP client(s) for interacting with remote APIs in Drupal modules.",
+    "keywords": ["drush", "Drupal", "drush generator", "drush commands"],
     "license": "MIT",
     "authors": [
         {
