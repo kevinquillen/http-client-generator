@@ -30,7 +30,7 @@ final class HttpClientGenerator extends ModuleGenerator {
    *
    * @var string
    */
-  protected string $templatePath = __DIR__ . '../../../templates';
+  protected string $templatePath = __DIR__ . '/../../../templates';
 
   /**
    * {@inheritdoc}
