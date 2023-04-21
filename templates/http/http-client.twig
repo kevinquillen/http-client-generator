@@ -7,7 +7,7 @@ use Drupal\Core\Http\ClientFactory;
 use GuzzleHttp\Client;
 
 /**
- * A simple interface for interacting with the remote HTTP API.
+ * {{ class_description }}
  *
  * @package {{ package }}
  */
@@ -40,22 +40,29 @@ class {{ class }} {
     ]);
   }
 
-  /**
-   * Submits a query to the API service.
-   */
-  public function query(array $options) {
-    $payload = [];
+  {% for endpoint in endpoints %}
+    /**
+     * Submits a request to the API {{ endpoint.name }} endpoint.
+     *
+     * @param array $options
+     * @param array $filters
+     * @return \Psr\Http\Message\ResponseInterface
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function {{ endpoint.name }}(array $options, array $filters = []) {
+      $payload = $options;
 
-    if (!empty($filters)) {
-      $payload['filter'] = $filters;
+      if (!empty($filters)) {
+        $payload['filter'] = $filters;
+      }
+
+      return $this->client->post(
+        '/{{ endpoint.uri }}',
+        [
+          'json' => $payload,
+        ]
+      );
     }
-
-    return $this->client->post(
-      '/query',
-      [
-        'json' => $payload,
-      ]
-    );
-  }
+  {% endfor %}
 
 }
