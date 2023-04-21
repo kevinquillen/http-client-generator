@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Drupal\http_client_generator\Generators;
+namespace kevinquillen\Drush\Generators;
 
 use DrupalCodeGenerator\Command\ModuleGenerator;
 
 /**
  * Implements HttpClient generator command.
  */
-final class HttpClient extends ModuleGenerator {
+final class HttpClientGenerator extends ModuleGenerator {
 
   /**
    * The Drush generator command name.
@@ -30,7 +30,7 @@ final class HttpClient extends ModuleGenerator {
    *
    * @var string
    */
-  protected string $templatePath = __DIR__ . '/../../templates';
+  protected string $templatePath = __DIR__ . '../../../templates';
 
   /**
    * {@inheritdoc}

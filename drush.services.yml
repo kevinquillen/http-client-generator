@@ -1,5 +1,0 @@
-services:
-  http_client.generator:
-    class: Drupal\http_client_generator\Generators\HttpClient
-    tags:
-      -  { name: drush.generator.v2 }
