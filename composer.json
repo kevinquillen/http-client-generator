@@ -14,6 +14,7 @@
         "psr-4": { "kevinquillen\\": "src" }
     },
     "require": {
+        "drupal/core": "^10",
         "drush/drush": "^11"
     }
 }
