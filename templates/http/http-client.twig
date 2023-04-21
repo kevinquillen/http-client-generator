@@ -41,28 +41,29 @@ class {{ class }} {
   }
 
   {% for endpoint in endpoints %}
-    /**
-     * Submits a request to the API {{ endpoint.name }} endpoint.
-     *
-     * @param array $options
-     * @param array $filters
-     * @return \Psr\Http\Message\ResponseInterface
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
-    public function {{ endpoint.name }}(array $options, array $filters = []) {
-      $payload = $options;
+  /**
+   * Submits a request to the API {{ endpoint.name }} endpoint.
+   *
+   * @param array $options
+   * @param array $filters
+   * @return \Psr\Http\Message\ResponseInterface
+   * @throws \GuzzleHttp\Exception\GuzzleException
+   */
+  public function {{ endpoint.name }}(array $options, array $filters = []) {
+    $payload = $options;
 
-      if (!empty($filters)) {
-        $payload['filter'] = $filters;
-      }
-
-      return $this->client->post(
-        '/{{ endpoint.uri }}',
-        [
-          'json' => $payload,
-        ]
-      );
+    if (!empty($filters)) {
+      $payload['filter'] = $filters;
     }
+
+    return $this->client->post(
+      '/{{ endpoint.uri }}',
+      [
+        'json' => $payload,
+      ]
+    );
+  }
+
   {% endfor %}
 
 }
